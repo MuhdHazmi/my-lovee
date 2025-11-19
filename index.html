@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Notes for My Love 💌</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #ffe6f2, #ffb3d9, #ffd6e0);
+      background-size: 300% 300%;
+      animation: gradientShift 10s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+      font-family: 'Quicksand', sans-serif;
+      color: #5a003a;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating Hearts */
+    .floating-heart {
+      position: fixed;
+      bottom: -10px;
+      color: #ff66b2;
+      font-size: 20px;
+      opacity: 0.7;
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    .container { max-width: 420px; width: 100%; text-align: center; }
+
+    header {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      border: 2px solid rgba(255, 102, 178, 0.4);
+      box-shadow: 0 0 25px rgba(255, 102, 178, 0.3);
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      color: #b30059;
+      text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.5);
+    }
+
+    .subtitle { font-size: 1.1rem; color: #800040; margin-bottom: 15px; }
+
+    .profile-pic {
+      width: 150px; height: 150px; border-radius: 50%;
+      object-fit: cover; border: 5px solid #ff66b2;
+      box-shadow: 0 0 20px rgba(255, 102, 178, 0.7);
+      margin: 15px auto; animation: pulse 2s infinite;
+    }
+
+    .love-message {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px; padding: 25px; margin: 20px 0;
+      border: 2px solid rgba(255, 102, 178, 0.4);
+      box-shadow: 0 0 25px rgba(255, 102, 178, 0.3);
+      animation: slideUp 1s ease-out;
+    }
+
+    .message-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem; color: #b30059; margin-bottom: 15px;
+    }
+
+    .message-text {
+      font-size: 1.1rem; line-height: 1.6;
+      color: #5a003a; margin-bottom: 15px;
+    }
+
+    .love-quote {
+      font-style: italic; color: #800040;
+      margin: 20px 0; padding: 15px;
+      border-left: 3px solid #ff66b2;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+    }
+
+    .interactive-heart {
+      font-size: 3rem; color: #ff1a75;
+      cursor: pointer; margin: 20px 0;
+      transition: transform 0.3s;
+      animation: heartbeat 2s infinite;
+    }
+
+    .interactive-heart:hover { transform: scale(1.3); }
+
+    .floating-message {
+      position: fixed; top: 40%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 25px; border-radius: 15px;
+      font-size: 1.3rem; color: #b30059;
+      box-shadow: 0 4px 10px rgba(255, 0, 85, 0.3);
+      animation: fadeInOut 3s ease forwards; z-index: 1000;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+      10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%, -40%) scale(0.8); }
+    }
+
+    .love-meter {
+      text-align: center; margin-top: 30px;
+      font-weight: bold; color: #b30059;
+    }
+
+    .meter-bar {
+      width: 80%; height: 15px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 10px; margin: 10px auto;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      width: 0; height: 100%;
+      background: linear-gradient(90deg, #ff66b2, #ff1a75);
+      animation: fillLove 4s ease-out forwards;
+    }
+
+    @keyframes fillLove { from { width: 0; } to { width: 100%; } }
+
+    footer {
+      margin-top: 30px; color: #800040;
+      font-size: 0.9rem; padding: 15px; text-align: center;
+    }
+
+    .fade-section {
+      opacity: 0; transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    .fade-section.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      .message-title { font-size: 1.5rem; }
+      .message-text { font-size: 1rem; }
+    }
+
+    /* Piano Button Styles */
+    .piano-button {
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+      background: #ff57c7;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .piano-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    }
+
+    .piano {
+      position: relative;
+      display: flex;
+      height: 130px;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+    }
+
+    .white-key {
+      flex: 1;
+      border-right: 1px solid #ddd;
+      background: white;
+      transition: 0.15s;
+    }
+
+    .black-key {
+      position: absolute;
+      width: 22px;
+      height: 70px;
+      background: black;
+      top: 0;
+      z-index: 5;
+      border-radius: 0 0 4px 4px;
+      transition: 0.15s;
+    }
+
+    .pressed-white {
+      background: #ffd2f3 !important;
+      box-shadow: inset 0 0 10px #ff93db;
+    }
+
+    .pressed-black {
+      background: #ff93db !important;
+      box-shadow: 0 0 12px #ff93db;
+    }
+
+    /* Reveal section */
+    .reveal-container {
+      position: relative;
+      width: 320px; height: 240px; margin: 0 auto;
+      border: 5px solid #ff66b2; border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(255, 102, 178, 0.3);
+    }
+
+    .reveal-container img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 10px;
+      transition: box-shadow 1s ease, transform 1s ease;
+    }
+
+    .reveal-container canvas {
+      position: absolute; top: 0; left: 0;
+      border-radius: 10px; cursor: pointer;
+    }
+
+    .reveal-text {
+      margin-top: 15px; font-size: 1.1rem;
+      color: #b30059; font-weight: 600;
+    }
+
+    .glow {
+      box-shadow: 0 0 40px 10px rgba(255, 102, 178, 0.8);
+      transform: scale(1.03);
+    }
+
+    /* Memory Game Styles */
+    .memory-game-container {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      grid-gap: 12px;
+      perspective: 1000px;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+      .memory-game-container {
+        grid-template-columns: repeat(4, 70px);
+        grid-template-rows: repeat(2, 110px);
+      }
+    }
+
+    .memory-card {
+      width: 70px;
+      height: 110px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+      border: 2px solid white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .memory-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .memory-card.matched {
+      transform: rotateY(180deg);
+      pointer-events: none;
+    }
+
+    .memory-front, .memory-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .memory-front {
+      background-color: lightpink;
+    }
+
+    .memory-back {
+      background-color: white;
+      transform: rotateY(180deg);
+    }
+
+    .memory-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Puzzle Section */
+    .puzzle-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: #b30059;
+      margin-bottom: 6px;
+    }
+
+    .puzzle-instruction {
+      font-size: 1rem;
+      color: #5a003a;
+      margin-bottom: 14px;
+    }
+
+    .puzzle-board-wrapper {
+      width: 320px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .puzzle-grid {
+      width: 320px;
+      height: 320px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 5px;
+      background: rgba(255,255,255,0.4);
+      padding: 10px;
+      border-radius: 12px;
+      border: 3px solid rgba(255,102,178,0.2);
+      box-shadow: 0 6px 18px rgba(255, 102, 178, 0.12);
+      position: relative;
+    }
+
+    .slot {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      outline: 2px dashed rgba(255,102,178,0.12);
+    }
+
+    .pieces-layer {
+      width: 320px;
+      min-height: 120px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    .puzzle-piece {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+      border: 2px solid #ff66b2;
+      box-shadow: 0 6px 14px rgba(255,102,178,0.15);
+      touch-action: none;
+      position: absolute;
+      background-image: url('src/puzzle.jpg');
+      background-size: 300px 300px;
+      background-repeat: no-repeat;
+      cursor: grab;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .puzzle-piece.placed {
+      cursor: default;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-color: rgba(255,102,178,0.9);
+    }
+
+    .puzzle-piece.bounce {
+      animation: bounceIn 400ms ease-out;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Sparkles + Confetti overlay */
+    .sparkle-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2000;
+      overflow: hidden;
+    }
+
+    .sparkle-item, .confetti-item {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0) 60%);
+      filter: drop-shadow(0 0 8px rgba(255, 153, 204, 0.9));
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkleUp 1200ms ease-out forwards;
+    }
+
+    .confetti-item {
+      width: 6px; height: 16px;
+      background: #ff66b2;
+      opacity: 0;
+      animation: confettiDrop 1500ms ease-out forwards;
+    }
+
+    @keyframes sparkleUp {
+      0% { transform: translateY(20px) scale(0.6); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+    }
+
+    @keyframes confettiDrop {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(200px) rotate(720deg); opacity: 0; }
+    }
+
+    .congrats-msg {
+      position: fixed;
+      left: 50%;
+      top: 30%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,255,255,0.95);
+      padding: 18px 26px;
+      border-radius: 12px;
+      color: #b30059;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 30px rgba(179,0,89,0.12);
+      z-index: 2100;
+      display: none;
+    }
+
+    /* Love Timeline Styles */
+    .timeline-section {
+      margin: 50px 0;
+      text-align: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .timeline-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: #b30059;
+      margin-bottom: 30px;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, #ff66b2, #ff1a75);
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(even) {
+      justify-content: flex-end;
+    }
+
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 15px;
+      width: 45%;
+      box-shadow: 0 5px 15px rgba(255, 102, 178, 0.3);
+      border: 2px solid rgba(255, 102, 178, 0.4);
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: auto;
+      margin-left: 0;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 102, 178, 0.4);
+    }
+
+    .timeline-date {
+      font-weight: bold;
+      color: #ff1a75;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .timeline-text {
+      color: #5a003a;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .timeline-photo {
+      width: 100%;
+      height: 250%;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #ff66b2;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: #ff1a75;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      box-shadow: 0 0 10px rgba(255, 26, 117, 0.7);
+    }
+
+    .timeline-connector {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      transform: translateY(-50%);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-connector {
+      border-left: 15px solid rgba(255, 255, 255, 0.8);
+      right: 45%;
+    }
+
+    .timeline-item:nth-child(even) .timeline-connector {
+      border-right: 15px solid rgba(255, 255, 255, 0.8);
+      left: 45%;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-item {
+        justify-content: flex-start !important;
+        padding-left: 40px;
+      }
+      
+      .timeline-content {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      
+      .timeline-item::after {
+        left: 20px;
+      }
+      
+      .timeline-connector {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="backgroundMusic" loop volume="0.2">
+    <source src="src/Peri_Cintaku.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <header class="fade-section">
+      <h1>For My Beautiful Girlfriend, Afrina Damia <span class="heart">❤️</span></h1>
+      <p class="subtitle">Every day with you means world to me</p>
+      <img src="src/profile.jpg" alt="Couple" class="profile-pic">
+      <p>I really love you so muchh!!</p>
+    </header>
+
+    <!-- New Piano Button Container -->
+    <div class="love-message fade-section">
+      <h2 class="message-title">Play Our Song 💕</h2>
+      <p class="message-text">Click the piano to play our special song!</p>
+      <div class="piano-button" onclick="togglePiano()">
+        <div class="piano">
+          <!-- White Keys -->
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+          <div class="white-key"></div>
+
+          <!-- Black Keys -->
+          <div class="black-key" style="left: 25px;"></div>
+          <div class="black-key" style="left: 65px;"></div>
+          <div class="black-key" style="left: 145px;"></div>
+          <div class="black-key" style="left: 185px;"></div>
+          <div class="black-key" style="left: 225px;"></div>
+          <div class="black-key" style="left: 305px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="love-message fade-section">
+      <h2 class="message-title">My Love For You</h2>
+      <p class="message-text">From the moment we met, I knew there was something special about you. Your smile brightens my day, your laughter is my favourite sound, and your love gives me strength.</p>
+      <div class="love-quote">"I love you not only for what you are, but for what I am when I am with you."</div>
+      <p class="message-text">I have prayed that I will marry you one day and we will live happily together. You are my everything.</p>
+      <div class="interactive-heart" onclick="showFloatingMessage()">❤️</div>
+      <p>Click the heart for a surprise!</p>
+    </div>
+
+    <!-- Scratch Container -->
+    <div class="love-message fade-section">
+      <h2 class="message-title">Wipe to Reveal My Favorite Memory 💕</h2>
+      <div class="reveal-container">
+        <img id="hiddenPhoto" src="src/scratch.jpg" alt="Hidden Love Photo">
+        <canvas id="revealCanvas" width="320" height="240"></canvas>
+      </div>
+      <p class="reveal-text">Use your finger to reveal the photo!</p>
+    </div>
+
+    <!-- Memory Game Container -->
+    <div class="love-message fade-section">
+      <h2 class="message-title">Memory Game 💖</h2>
+      <p class="message-text">Match the pairs to reveal our special moments!</p>
+      <div class="memory-game-container" id="memoryGameContainer"></div>
+    </div>
+
+    <!-- Puzzle Container -->
+    <div class="love-message fade-section">
+      <h2 class="message-title">Complete Your "Pipi Gemoy" Puzzle 💞</h2>
+      <p class="message-text">Drag each piece into its correct spot to reveal the image!</p>
+
+      <div class="puzzle-board-wrapper">
+        <div class="puzzle-grid" id="puzzleGrid"></div>
+        <div class="pieces-layer" id="piecesLayer"></div>
+      </div>
+    </div>
+
+    <!-- Love Timeline Section -->
+    <div class="timeline-section fade-section">
+      <h2 class="timeline-title">Our Love Timeline 💕</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">16 March 2021</div>
+            <img src="src/1.jpg" alt="First Picture" class="timeline-photo">
+            <div class="timeline-text">Our first picture together</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">3 August 2023</div>
+            <img src="src/2.jpg" alt="Meeting" class="timeline-photo">
+            <div class="timeline-text">Meeting at your place</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">24 April 2024</div>
+            <img src="src/3.jpg" alt="Birthday Video" class="timeline-photo">
+            <div class="timeline-text">My edited video for your birthday</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">24 March 2025</div>
+            <img src="src/4.jpg" alt="Meeting" class="timeline-photo">
+            <div class="timeline-text">Meeting at my place</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">24 April 2025</div>
+            <img src="src/5.jpg" alt="Couple Date" class="timeline-photo">
+            <div class="timeline-text">Our date being couples</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">6 June 2025</div>
+            <img src="src/6.jpg" alt="First Date" class="timeline-photo">
+            <div class="timeline-text">Our first date</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">5 August 2025</div>
+            <img src="src/7.jpg" alt="Second Date" class="timeline-photo">
+            <div class="timeline-text">Our second date</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">14 August 2025</div>
+            <img src="src/8.jpg" alt="Third Date" class="timeline-photo">
+            <div class="timeline-text">Our third date</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">Present</div>
+            <img src="src/9.jpg" alt="Present" class="timeline-photo">
+            <div class="timeline-text">Still love you so much!</div>
+          </div>
+          <div class="timeline-connector"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="love-meter fade-section">
+      <p>❤️ Love Level ❤️</p>
+      <div class="meter-bar"><div class="meter-fill"></div></div>
+    </div>
+
+    <footer class="fade-section">
+      <p>Made with <span class="heart">❤️</span> for my special someone</p>
+      <p>From your boyfriend, Hazmi</p>
+    </footer>
+  </div>
+
+  <div class="sparkle-overlay" id="sparkleOverlay" aria-hidden="true"></div>
+  <div class="congrats-msg" id="congratsMsg">Beautiful! You solved it 💖</div>
+
+  <script>
+    // Piano Button and Music Functionality
+    let playing = false;
+    let randomInterval;
+    const audio = document.getElementById('backgroundMusic');
+
+    function togglePiano() {
+      const whiteKeys = document.querySelectorAll(".white-key");
+      const blackKeys = document.querySelectorAll(".black-key");
+      const allKeys = [...whiteKeys, ...blackKeys];
+
+      if (!playing) {
+        // Start playing music and piano animation
+        playing = true;
+        
+        // Play the audio
+        audio.play().catch(error => {
+          console.log('Audio play failed:', error);
+          alert('Please interact with the page to play audio. Click the piano again.');
+        });
+
+        // Start piano animation
+        randomInterval = setInterval(() => {
+          allKeys.forEach(k => {
+            k.classList.remove("pressed-white");
+            k.classList.remove("pressed-black");
+          });
+
+          let key = allKeys[Math.floor(Math.random() * allKeys.length)];
+
+          if (key.classList.contains("white-key")) {
+            key.classList.add("pressed-white");
+          } else {
+            key.classList.add("pressed-black");
+          }
+
+        }, 400); // Slow speed
+      } else {
+        // Stop playing music and piano animation
+        playing = false;
+        audio.pause();
+        clearInterval(randomInterval);
+
+        document.querySelectorAll(".white-key").forEach(k => k.classList.remove("pressed-white"));
+        document.querySelectorAll(".black-key").forEach(k => k.classList.remove("pressed-black"));
+      }
+    }
+
+    // Existing floating hearts + reveal code
+    function createFloatingHearts() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+    setInterval(createFloatingHearts, 800);
+
+    function showFloatingMessage() {
+      const msg = document.createElement('div');
+      msg.classList.add('floating-message');
+      const messages = [
+        "I love you so muchhh 💞",
+        "Miss youu 💋",
+        "Forever yours ❤️",
+        "You make my heart skip a beat 💓"
+      ];
+      msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 3000);
+    }
+
+    const faders = document.querySelectorAll('.fade-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    });
+    faders.forEach(el => observer.observe(el));
+
+    // Fixed Scratch Section Code
+    const canvas = document.getElementById('revealCanvas');
+    const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
+    const hiddenPhoto = document.getElementById('hiddenPhoto');
+    
+    if (ctx) {
+      let isDrawing = false, revealed = false;
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#ffb3d9');
+      gradient.addColorStop(1, '#ff66b2');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 40;
+
+      function getPosition(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        
+        const x = (clientX - rect.left) * scaleX;
+        const y = (clientY - rect.top) * scaleY;
+        
+        return { x, y };
+      }
+      
+      function startDraw(e) { 
+        e.preventDefault();
+        isDrawing = true; 
+        const { x, y } = getPosition(e);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+      }
+      
+      function endDraw() { 
+        isDrawing = false; 
+        checkRevealProgress(); 
+      }
+      
+      function draw(e) {
+        e.preventDefault();
+        if (!isDrawing || revealed) return;
+        const { x, y } = getPosition(e);
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+      
+      function checkRevealProgress() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const total = imageData.data.length / 4;
+        let transparentCount = 0;
+        for (let i = 3; i < imageData.data.length; i += 4) {
+          if (imageData.data[i] < 128) transparentCount++;
+        }
+        const percent = transparentCount / total;
+        if (percent > 0.7 && !revealed) {
+          revealed = true;
+          hiddenPhoto.classList.add('glow');
+          canvas.style.transition = 'opacity 1s ease';
+          canvas.style.opacity = '0';
+          const msg = document.createElement('div');
+          msg.classList.add('floating-message');
+          msg.innerText = "You found our beautiful memory 💞";
+          document.body.appendChild(msg);
+          setTimeout(() => msg.remove(), 3000);
+        }
+      }
+      
+      // Mouse events
+      canvas.addEventListener('mousedown', startDraw);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', endDraw);
+      canvas.addEventListener('mouseleave', endDraw);
+      
+      // Touch events
+      canvas.addEventListener('touchstart', startDraw, { passive: false });
+      canvas.addEventListener('touchmove', draw, { passive: false });
+      canvas.addEventListener('touchend', endDraw);
+    }
+
+    /********** Memory Game Implementation **********/
+    (function memoryGameInit() {
+      const images = [
+        'src/a.jpg',
+        'src/b.jpg',
+        'src/e.jpg',
+        'src/d.jpg'
+      ];
+
+      const cards = [...images, ...images]; // Duplicate for pairs
+
+      // Shuffle function
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      shuffle(cards);
+
+      const container = document.getElementById('memoryGameContainer');
+
+      cards.forEach((imgSrc, index) => {
+        const card = document.createElement('div');
+        card.classList.add('memory-card');
+        card.dataset.image = imgSrc;
+
+        const front = document.createElement('div');
+        front.classList.add('memory-front');
+
+        const back = document.createElement('div');
+        back.classList.add('memory-back');
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        back.appendChild(img);
+
+        card.appendChild(front);
+        card.appendChild(back);
+
+        card.addEventListener('click', handleCardClick);
+
+        container.appendChild(card);
+      });
+
+      let firstCard = null;
+      let secondCard = null;
+      let lockBoard = false;
+
+      function handleCardClick(event) {
+        const clickedCard = event.currentTarget;
+
+        if (lockBoard || clickedCard === firstCard || clickedCard.classList.contains('flipped')) return;
+
+        clickedCard.classList.add('flipped');
+
+        if (!firstCard) {
+          firstCard = clickedCard;
+        } else {
+          secondCard = clickedCard;
+          lockBoard = true;
+
+          if (firstCard.dataset.image === secondCard.dataset.image) {
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            resetBoard();
+            checkWin();
+          } else {
+            setTimeout(() => {
+              firstCard.classList.remove('flipped');
+              secondCard.classList.remove('flipped');
+              resetBoard();
+            }, 500);
+          }
+        }
+      }
+
+      function resetBoard() {
+        firstCard = null;
+        secondCard = null;
+        lockBoard = false;
+      }
+
+      function checkWin() {
+        const allMatched = document.querySelectorAll('.memory-card.matched').length === cards.length;
+        if (allMatched) {
+          setTimeout(() => alert('Yeayyyy'), 500);
+        }
+      }
+    })();
+
+    /********** Puzzle Implementation **********/
+    (function puzzleInit(){
+      const PUZZLE_SIZE = 3; // 3x3
+      const SLOT_SIZE = 100; // px each side
+      const totalPieces = PUZZLE_SIZE * PUZZLE_SIZE;
+      const grid = document.getElementById('puzzleGrid');
+      const piecesLayer = document.getElementById('piecesLayer');
+      const sparkleOverlay = document.getElementById('sparkleOverlay');
+      const congratsMsg = document.getElementById('congratsMsg');
+
+      const BACKGROUND_URL = 'src/puzzle.jpg';
+      const BG_SIZE = 300;
+
+      for (let i = 0; i < totalPieces; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'slot';
+        slot.dataset.index = i;
+        grid.appendChild(slot);
+      }
+
+      const pieces = [];
+      for (let idx = 0; idx < totalPieces; idx++) {
+        const piece = document.createElement('div');
+        piece.className = 'puzzle-piece';
+        piece.dataset.correct = idx;
+        const row = Math.floor(idx / PUZZLE_SIZE);
+        const col = idx % PUZZLE_SIZE;
+        const posX = -col * SLOT_SIZE;
+        const posY = -row * SLOT_SIZE;
+        piece.style.backgroundImage = `url('${BACKGROUND_URL}')`;
+        piece.style.backgroundSize = `${BG_SIZE}px ${BG_SIZE}px`;
+        piece.style.backgroundPosition = `${posX}px ${posY}px`;
+        piece.style.width = SLOT_SIZE + 'px';
+        piece.style.height = SLOT_SIZE + 'px';
+        pieces.push(piece);
+      }
+
+      pieces.forEach((p, i) => {
+        piecesLayer.appendChild(p);
+        const pad = 6;
+        const maxX = piecesLayer.clientWidth - SLOT_SIZE - pad;
+        const maxY = piecesLayer.clientHeight - SLOT_SIZE - pad;
+        const rx = Math.floor(Math.random() * (maxX + 1));
+        const ry = Math.floor(Math.random() * (maxY + 1));
+        p.style.left = rx + 'px';
+        p.style.top = ry + 'px';
+        p.style.position = 'absolute';
+        p.style.zIndex = 50 + i;
+        p.dataset.placed = 'false';
+      });
+
+      function getSlotEl(index) {
+        return grid.querySelector(`.slot[data-index="${index}"]`);
+      }
+
+      let activePiece = null;
+      let startX = 0, startY = 0, origLeft = 0, origTop = 0;
+      let offsetX = 0, offsetY = 0;
+
+      function onPointerDown(e) {
+        const t = e.currentTarget;
+        if (t.dataset.placed === 'true') return;
+        activePiece = t;
+        activePiece.style.transition = 'none';
+        const rect = activePiece.getBoundingClientRect();
+        startX = e.clientX || (e.touches && e.touches[0].clientX);
+        startY = e.clientY || (e.touches && e.touches[0].clientY);
+        origLeft = parseFloat(activePiece.style.left);
+        origTop = parseFloat(activePiece.style.top);
+        offsetX = startX - (piecesLayer.getBoundingClientRect().left + origLeft);
+        offsetY = startY - (piecesLayer.getBoundingClientRect().top + origTop);
+        activePiece.style.zIndex = 9999;
+        if (e.pointerId) {
+          activePiece.setPointerCapture(e.pointerId);
+        }
+      }
+
+      function onPointerMove(e) {
+        if (!activePiece) return;
+        e.preventDefault();
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+        const newLeft = clientX - piecesLayer.getBoundingClientRect().left - offsetX;
+        const newTop = clientY - piecesLayer.getBoundingClientRect().top - offsetY;
+        activePiece.style.left = `${newLeft}px`;
+        activePiece.style.top = `${newTop}px`;
+      }
+
+      function onPointerUp(e) {
+        if (!activePiece) return;
+        const pieceRect = activePiece.getBoundingClientRect();
+        const centerX = pieceRect.left + pieceRect.width/2;
+        const centerY = pieceRect.top + pieceRect.height/2;
+        let droppedOn = null;
+        const slots = Array.from(document.querySelectorAll('.slot'));
+        for (const s of slots) {
+          const sr = s.getBoundingClientRect();
+          if (centerX >= sr.left && centerX <= sr.right && centerY >= sr.top && centerY <= sr.bottom) {
+            droppedOn = s;
+            break;
+          }
+        }
+
+        const correctIndex = parseInt(activePiece.dataset.correct,10);
+        if (droppedOn) {
+          const slotIndex = parseInt(droppedOn.dataset.index,10);
+          const occupied = droppedOn.querySelector('.puzzle-piece.placed');
+          if (occupied) {
+            activePiece.style.transition = 'left 300ms ease, top 300ms ease';
+            activePiece.style.left = origLeft + 'px';
+            activePiece.style.top = origTop + 'px';
+            activePiece.style.zIndex = 50;
+          } else if (slotIndex === correctIndex) {
+            // correct placement: animate bounce
+            activePiece.style.transition = 'left 200ms ease, top 200ms ease, transform 300ms ease';
+            const slotRect = droppedOn.getBoundingClientRect();
+            const leftRel = slotRect.left - piecesLayer.getBoundingClientRect().left;
+            const topRel = slotRect.top - piecesLayer.getBoundingClientRect().top;
+            activePiece.style.left = `${leftRel}px`;
+            activePiece.style.top = `${topRel}px`;
+            activePiece.classList.add('bounce');
+            setTimeout(() => {
+              activePiece.dataset.placed = 'true';
+              activePiece.classList.add('placed');
+              activePiece.style.position = 'relative';
+              activePiece.style.left = '0px';
+              activePiece.style.top = '0px';
+              activePiece.style.width = '100%';
+              activePiece.style.height = '100%';
+              activePiece.style.cursor = 'default';
+              droppedOn.appendChild(activePiece);
+              activePiece = null;
+              checkSolved();
+            }, 300);
+          } else {
+            activePiece.style.transition = 'left 300ms ease, top 300ms ease';
+            activePiece.style.left = origLeft + 'px';
+            activePiece.style.top = origTop + 'px';
+            activePiece.style.zIndex = 50;
+          }
+        } else {
+          activePiece.style.transition = 'left 300ms ease, top 300ms ease';
+          activePiece.style.left = origLeft + 'px';
+          activePiece.style.top = origTop + 'px';
+          activePiece.style.zIndex = 50;
+        }
+
+        if (e.pointerId && activePiece && activePiece.releasePointerCapture) {
+          try { activePiece.releasePointerCapture(e.pointerId); } catch(_){}
+        }
+        activePiece = null;
+      }
+
+      pieces.forEach(p => {
+        p.addEventListener('pointerdown', onPointerDown);
+      });
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);
+
+      function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+      }
+      shuffleArray(pieces);
+
+      function checkSolved(){
+        const placedCount = grid.querySelectorAll('.puzzle-piece.placed').length;
+        if (placedCount === totalPieces) {
+          setTimeout(() => celebrate(), 300);
+        }
+      }
+
+      function celebrate(){
+        congratsMsg.style.display = 'block';
+        const totalSpark = 25;
+        const totalConfetti = 30;
+        for (let i = 0; i < totalSpark; i++) {
+          const s = document.createElement('div');
+          s.className = 'sparkle-item';
+          const left = Math.random() * window.innerWidth;
+          const top = Math.random() * (window.innerHeight * 0.6) + window.innerHeight * 0.1;
+          s.style.left = left + 'px';
+          s.style.top = top + 'px';
+          s.style.animationDelay = (Math.random() * 400) + 'ms';
+          s.style.width = (6 + Math.random()*6) + 'px';
+          s.style.height = s.style.width;
+          sparkleOverlay.appendChild(s);
+          setTimeout(() => s.remove(), 1400 + (i*10));
+        }
+        for (let j = 0; j < totalConfetti; j++) {
+          const c = document.createElement('div');
+          c.className = 'confetti-item';
+          const left = Math.random() * window.innerWidth;
+          c.style.left = left + 'px';
+          c.style.top = '-10px';
+          c.style.animationDelay = (Math.random()*200) + 'ms';
+          c.style.background = `hsl(${Math.random()*360}, 70%, 70%)`;
+          sparkleOverlay.appendChild(c);
+          setTimeout(() => c.remove(), 1600 + (j*12));
+        }
+        setTimeout(() => { congratsMsg.style.display = 'none'; }, 2600);
+      }
+    })();
+  </script>
+</body>
+</html>
